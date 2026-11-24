@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mengenal Khulafaur Rasyidin – Media Interaktif PAI Kelas 6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brown:#6B4226; --brown2:#8B5E3C; --ink:#3b2616; --sand:#E9D8C0; --cream:#FFF8EA;
+  --blue:#2E6DB4; --navy:#1D3F72; --sky:#DCEBFA;
+  --yellow:#F6B93B; --gold:#C88F17; --butter:#FFF0C4;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;font-size:18px;line-height:1.55;color:var(--ink);
+  background:var(--cream);
+  background-image:radial-gradient(var(--sand) 1.2px,transparent 1.2px);background-size:26px 26px;
+  padding-bottom:96px}
+h1,h2,h3,.baloo{font-family:'Baloo 2','Nunito',sans-serif;line-height:1.2;margin:0 0 .4em;color:var(--brown)}
+h1{font-size:clamp(2rem,6vw,3.1rem);font-weight:800}
+h2{font-size:clamp(1.5rem,4.5vw,2.1rem);font-weight:800}
+h3{font-size:1.25rem;font-weight:700}
+p{margin:0 0 .7em}
+.ar{font-family:'Amiri',serif;direction:rtl}
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+.fr{fill:#8B5E3C}.fb{fill:#2E6DB4}.fy{fill:#F6B93B}.fl{fill:#F3E6D0}.fw{fill:#fff}.fd{fill:#3b2616}
+.st{stroke:#6B4226;stroke-width:2;stroke-linejoin:round}
+.sb{fill:none;stroke:#2E6DB4;stroke-width:2;stroke-linecap:round}
+.ic{width:56px;height:56px;flex:none}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:20;background:rgba(255,248,234,.96);backdrop-filter:blur(6px);border-bottom:3px solid var(--sand)}
+.topin{max-width:980px;margin:0 auto;padding:6px 12px 0}
+.brand{display:flex;align-items:center;gap:8px;font:800 1.05rem 'Baloo 2';color:var(--brown)}
+.brand .ic{width:30px;height:30px}
+.stepper{display:flex;gap:4px;overflow-x:auto;padding:4px 0 6px;scrollbar-width:none}
+.stepper::-webkit-scrollbar{display:none}
+.step{flex:1 0 62px;border:0;background:transparent;font:700 .72rem 'Nunito';color:var(--brown2);display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:2px}
+.step .dot{width:36px;height:36px;border-radius:50%;background:var(--sand);display:grid;place-items:center;font-size:1.05rem;transition:.25s}
+.step.active{color:var(--brown)}
+.step.active .dot{background:var(--yellow);box-shadow:0 0 0 4px var(--butter);transform:scale(1.08)}
+.step.done .dot{background:var(--blue);color:#fff}
+.track{height:6px;background:var(--sand);margin:0 -12px}
+#bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--yellow));transition:width .5s ease;border-radius:0 6px 6px 0}
+
+main{max-width:980px;margin:0 auto;padding:18px 14px}
+.slide{display:none}
+.slide.active{display:block;animation:rise .55s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+.card{background:#fff;border:3px solid var(--sand);border-radius:26px;padding:22px;box-shadow:0 6px 0 var(--sand);margin-bottom:22px}
+.card.blue{background:var(--sky);border-color:#b9d3ee;box-shadow:0 6px 0 #b9d3ee}
+.card.yellow{background:var(--butter);border-color:#f3dc92;box-shadow:0 6px 0 #f3dc92}
+.badge{display:inline-block;background:var(--butter);color:var(--brown);border:2px solid var(--yellow);border-radius:999px;padding:2px 14px;font:700 .9rem 'Baloo 2';margin-bottom:8px}
+
+.btn{font:800 1.05rem 'Baloo 2',sans-serif;min-height:48px;padding:8px 24px;border-radius:999px;border:0;cursor:pointer;
+  background:var(--yellow);color:var(--brown);box-shadow:0 4px 0 var(--gold);transition:transform .12s, box-shadow .12s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--gold)}
+.btn.blue{background:var(--blue);color:#fff;box-shadow:0 4px 0 var(--navy)}
+.btn.blue:active{box-shadow:0 1px 0 var(--navy)}
+.btn.ghost{background:#fff;border:3px solid var(--sand);box-shadow:none;color:var(--brown)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn:focus-visible,.step:focus-visible,.clue:focus-visible,.bucket:focus-visible,.opt:focus-visible,.tab:focus-visible,.chip:focus-visible,.mood button:focus-visible{outline:4px solid var(--blue);outline-offset:3px}
+
+/* bottom nav */
+.botnav{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(255,248,234,.97);border-top:3px solid var(--sand);padding:10px 14px}
+.botin{max-width:980px;margin:0 auto;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.botin .now{font:700 .95rem 'Baloo 2';color:var(--brown2);text-align:center;flex:1}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:18px;align-items:center}
+.hero .art{border-radius:26px;background:linear-gradient(#DCEBFA,#FFF0C4);border:3px solid var(--sand);overflow:hidden}
+.hero .art svg{display:block;width:100%;height:auto}
+.id-table{width:100%;border-collapse:collapse;font-size:.95rem;margin:10px 0 14px}
+.id-table td{padding:5px 8px;border-bottom:2px dashed var(--sand);vertical-align:top}
+.id-table td:first-child{font-weight:800;color:var(--brown2);white-space:nowrap;width:1%}
+.namebox{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.namebox input{flex:1 1 200px;min-height:48px;padding:8px 16px;font:700 1rem 'Nunito';border:3px solid var(--sand);border-radius:999px;background:#fff;color:var(--ink)}
+.namebox input:focus{outline:none;border-color:var(--blue)}
+@media(max-width:720px){.hero{grid-template-columns:1fr}.hero .art{order:-1}}
+
+/* floating */
+.float{animation:float 4s ease-in-out infinite}
+.float2{animation:float 5.5s ease-in-out infinite reverse}
+.twinkle{animation:twinkle 2.4s ease-in-out infinite}
+.drift{animation:drift 14s linear infinite alternate}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes twinkle{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes drift{from{transform:translateX(-14px)}to{transform:translateX(14px)}}
+.sv{transform-box:fill-box;transform-origin:center}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:3px solid var(--yellow);background:var(--butter);color:var(--brown);border-radius:999px;padding:6px 18px;font:800 1rem 'Baloo 2';cursor:pointer}
+.chip.on{background:var(--yellow)}
+.chipdef{margin-top:12px;min-height:3.2em;background:#fff;border:3px dashed var(--yellow);border-radius:18px;padding:10px 16px;font-weight:600}
+
+/* goals */
+.goal{display:flex;gap:14px;align-items:flex-start;padding:10px 0;border-bottom:2px dashed var(--sand)}
+.goal:last-child{border:0}
+.goal .n{flex:none;width:42px;height:42px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font:800 1.2rem 'Baloo 2'}
+.roadmap{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font:700 1rem 'Baloo 2'}
+.roadmap span.s{background:#fff;border:3px solid var(--sand);border-radius:999px;padding:4px 14px}
+.roadmap span.a{color:var(--gold)}
+
+/* story */
+.story .art{border-radius:22px;overflow:hidden;border:3px solid var(--sand);background:var(--butter)}
+.story svg{display:block;width:100%;height:auto}
+.story .txt{min-height:5.6em;margin-top:12px}
+.story-nav{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.dots{display:flex;gap:8px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--sand);display:block}
+.dots i.on{background:var(--blue);transform:scale(1.2)}
+
+/* tabs */
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.tab{border:3px solid var(--sand);background:#fff;border-radius:18px;padding:8px 4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:0;font:800 .95rem 'Baloo 2';color:var(--brown);transition:.2s}
+.tab .ic{width:44px;height:44px}
+.tab.on{border-color:var(--blue);background:var(--sky);transform:translateY(-3px)}
+@media(max-width:520px){.tab{font-size:.8rem}.tab .ic{width:36px;height:36px}}
+.kcard{animation:rise .4s ease both}
+.khead{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.khead .ic{width:84px;height:84px}
+.khead .ar{font-size:2rem;color:var(--navy);line-height:1.4}
+.infogrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.info{background:var(--butter);border-radius:16px;padding:10px 14px}
+.info.b{background:var(--sky)}
+.info small{display:block;font:800 .8rem 'Nunito';color:var(--brown2);text-transform:uppercase;letter-spacing:.04em}
+@media(max-width:560px){.infogrid{grid-template-columns:1fr}}
+.jasa{list-style:none;margin:6px 0 10px;padding:0}
+.jasa li{padding:6px 0 6px 34px;position:relative}
+.jasa li::before{content:'★';position:absolute;left:4px;color:var(--yellow);font-size:1.3rem;top:2px;-webkit-text-stroke:1px var(--gold)}
+.tip{background:var(--sky);border-left:8px solid var(--blue);border-radius:14px;padding:10px 16px}
+.sifat{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 10px}
+.sifat span{background:var(--blue);color:#fff;border-radius:999px;padding:2px 14px;font-weight:800;font-size:.95rem}
+.tblwrap{overflow-x:auto}
+table.klas{width:100%;border-collapse:collapse;font-size:.92rem;min-width:560px}
+table.klas th{background:var(--brown);color:#fff;padding:8px 10px;text-align:left;font:700 .95rem 'Baloo 2'}
+table.klas th:first-child{border-radius:14px 0 0 0}table.klas th:last-child{border-radius:0 14px 0 0}
+table.klas td{padding:8px 10px;border-bottom:2px solid var(--sand);vertical-align:top}
+table.klas tr:nth-child(even) td{background:#fffaf0}
+.order{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font:800 1.05rem 'Baloo 2'}
+.order b{background:var(--yellow);border-radius:999px;padding:2px 16px}
+
+/* activity */
+.msg{min-height:3.4em;border-radius:18px;padding:10px 16px;font-weight:700;background:#fff;border:3px dashed var(--sand);margin:12px 0;display:flex;align-items:center;gap:10px}
+.msg.good{background:var(--sky);border:3px solid var(--blue);border-style:solid}
+.msg.try{background:var(--butter);border:3px solid var(--yellow)}
+.pool{display:flex;flex-wrap:wrap;gap:10px;min-height:60px}
+.clue{border:3px solid var(--sand);background:#fff;border-radius:16px;padding:10px 14px;font:700 .98rem 'Nunito';color:var(--ink);cursor:pointer;text-align:left;box-shadow:0 3px 0 var(--sand);transition:.15s}
+.clue:hover{transform:translateY(-2px)}
+.clue.sel{border-color:var(--blue);background:var(--sky);transform:scale(1.05);box-shadow:0 3px 0 #b9d3ee}
+.buckets{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+@media(max-width:760px){.buckets{grid-template-columns:repeat(2,1fr)}}
+.bucket{border:3px dashed var(--brown2);background:#fffaf0;border-radius:22px;padding:10px;cursor:pointer;text-align:center;min-height:150px;font:inherit;color:var(--ink);transition:.2s}
+.bucket:hover,.bucket.ready{background:var(--butter);border-color:var(--yellow);transform:translateY(-3px)}
+.bucket .ic{width:52px;height:52px}
+.bucket b{display:block;font:800 1rem 'Baloo 2';color:var(--brown)}
+.placed{display:flex;flex-direction:column;gap:4px;margin-top:6px}
+.placed span{background:var(--sky);border-radius:10px;padding:2px 8px;font-size:.8rem;font-weight:700;animation:pop .4s ease both}
+@keyframes pop{0%{transform:scale(.4);opacity:0}70%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+.shake{animation:shake .45s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+.prog{height:14px;background:var(--sand);border-radius:999px;overflow:hidden}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--yellow));border-radius:999px;transition:width .5s}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.slot{min-height:78px;border:3px dashed var(--brown2);border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;font:800 1rem 'Baloo 2';color:var(--brown);text-align:center;padding:4px;background:#fffaf0}
+.slot small{color:var(--brown2);font-size:.8rem}
+.slot.full{border-style:solid;border-color:var(--blue);background:var(--sky);animation:pop .4s ease both}
+.slot .ic{width:34px;height:34px}
+@media(max-width:560px){.slots{grid-template-columns:repeat(2,1fr)}}
+
+/* quiz */
+.qhead{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px;font:700 1rem 'Baloo 2';color:var(--brown2)}
+.qtext{font-size:1.2rem;font-weight:800;margin:14px 0}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:center;text-align:left;font:700 1.02rem 'Nunito';color:var(--ink);min-height:54px;padding:8px 14px;border:3px solid var(--sand);border-radius:18px;background:#fff;cursor:pointer;box-shadow:0 3px 0 var(--sand);transition:.15s}
+.opt:hover:not(:disabled){transform:translateY(-2px);border-color:var(--yellow)}
+.opt .L{flex:none;width:34px;height:34px;border-radius:50%;background:var(--butter);display:grid;place-items:center;font:800 1rem 'Baloo 2';color:var(--brown)}
+.opt.right{background:var(--sky);border-color:var(--blue);animation:pop .4s ease both}
+.opt.right .L{background:var(--blue);color:#fff}
+.opt.wrong{background:var(--butter);border-color:var(--yellow);animation:shake .45s ease}
+.opt:disabled{cursor:default}
+.field{width:100%;font:600 1.05rem 'Nunito';color:var(--ink);padding:12px 16px;border:3px solid var(--sand);border-radius:18px;background:#fff}
+.field:focus{outline:none;border-color:var(--blue)}
+textarea.field{min-height:120px;resize:vertical}
+.hint{color:var(--brown2);font-weight:700;font-size:.95rem;margin:6px 0 10px}
+.fb{display:flex;gap:14px;align-items:flex-start;border-radius:20px;padding:14px 18px;margin-top:16px;animation:pop .45s ease both}
+.fb.good{background:var(--sky);border:3px solid var(--blue)}
+.fb.try{background:var(--butter);border:3px solid var(--yellow)}
+.fb .em{font-size:2.2rem;line-height:1}
+.fb p{margin:.3em 0 0;font-weight:600;font-size:.98rem}
+.fb ul{margin:.4em 0;padding-left:0;list-style:none;font-weight:600;font-size:.95rem}
+.fb .key{background:#fff;border-radius:12px;padding:8px 12px;margin-top:8px;font-weight:600;font-size:.95rem}
+.qfoot{display:flex;justify-content:flex-end;margin-top:16px;gap:10px}
+.intro-parts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+@media(max-width:620px){.intro-parts{grid-template-columns:1fr}}
+.part{background:var(--butter);border-radius:20px;padding:14px;text-align:center}
+.part .big{font:800 2.2rem 'Baloo 2';color:var(--blue);line-height:1}
+.part.b2{background:var(--sky)}
+
+/* results */
+.score{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.ring{flex:none;width:140px;height:140px;border-radius:50%;background:conic-gradient(var(--yellow) var(--p),var(--sand) 0);display:grid;place-items:center}
+.ring div{width:108px;height:108px;border-radius:50%;background:#fff;display:grid;place-items:center;font:800 2.4rem 'Baloo 2';color:var(--brown);line-height:1;text-align:center}
+.ring small{display:block;font:700 .75rem 'Nunito';color:var(--brown2)}
+.bars{display:grid;gap:10px;margin-top:14px}
+.barrow{display:grid;grid-template-columns:150px 1fr 56px;gap:10px;align-items:center;font-weight:800;font-size:.95rem}
+.barrow .ic{width:26px;height:26px;vertical-align:middle;margin-right:4px}
+.barrow .prog{height:16px}
+@media(max-width:520px){.barrow{grid-template-columns:1fr 56px}.barrow .prog{grid-column:1/-1;order:3}}
+.mood{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0 14px}
+.mood button{border:3px solid var(--sand);background:#fff;border-radius:18px;padding:8px 2px;cursor:pointer;font:800 .85rem 'Baloo 2';color:var(--brown);display:flex;flex-direction:column;align-items:center;transition:.2s}
+.mood button span{font-size:2rem;line-height:1.2}
+.mood button.on{border-color:var(--blue);background:var(--sky);transform:translateY(-4px) scale(1.04)}
+@media(max-width:480px){.mood{grid-template-columns:repeat(2,1fr)}}
+.check{display:flex;gap:12px;align-items:flex-start;padding:8px 0;font-weight:700;cursor:pointer}
+.check input{width:26px;height:26px;accent-color:var(--blue);flex:none;margin-top:2px}
+label.lbl{display:block;font-weight:800;margin:12px 0 4px;color:var(--brown)}
+.conf{position:fixed;top:-40px;z-index:60;pointer-events:none;animation:fall 2.8s linear forwards}
+@keyframes fall{to{transform:translateY(112vh) rotate(420deg)}}
+footer{max-width:980px;margin:0 auto;padding:0 14px 20px;text-align:center;color:var(--brown2);font-size:.85rem;font-weight:700}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ikon -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-mosque" viewBox="0 0 64 64">
+    <rect x="5" y="22" width="7" height="32" rx="2" class="fr"/><path d="M4 22 L8.5 10 L13 22z" class="fy"/>
+    <rect x="52" y="22" width="7" height="32" rx="2" class="fr"/><path d="M51 22 L55.5 10 L60 22z" class="fy"/>
+    <rect x="14" y="34" width="36" height="20" class="fl st"/>
+    <path d="M18 34 a14 14 0 0 1 28 0z" class="fb"/>
+    <rect x="31" y="12" width="2" height="9" class="fr"/><circle cx="32" cy="11" r="2.6" class="fy"/>
+    <path d="M28 54 v-9 a4 4 0 0 1 8 0 v9z" class="fy"/>
+    <rect x="3" y="54" width="58" height="3.5" rx="1.7" class="fr"/>
+  </symbol>
+  <symbol id="i-moon" viewBox="0 0 64 64">
+    <path d="M40 6 a26 26 0 1 0 16 40 A22 22 0 0 1 40 6z" class="fy"/>
+    <path d="M52 12 l2.3 4.8 5.2.7 -3.8 3.6 1 5.2 -4.7-2.5 -4.7 2.5 1-5.2 -3.8-3.6 5.2-.7z" class="fy"/>
+  </symbol>
+  <symbol id="i-book" viewBox="0 0 64 64">
+    <path d="M3 16 Q18 10 32 17 Q46 10 61 16 V56 Q46 50 32 57 Q18 50 3 56z" class="fr"/>
+    <path d="M7 16 Q19 12 32 18 V53 Q19 47 7 51z" class="fw"/>
+    <path d="M57 16 Q45 12 32 18 V53 Q45 47 57 51z" class="fw"/>
+    <path d="M12 25 Q19 22 27 26 M12 32 Q19 29 27 33 M12 39 Q19 36 27 40" class="sb"/>
+    <path d="M37 26 Q45 22 52 25 M37 33 Q45 29 52 32" class="sb"/>
+    <path d="M45 36 l2 4 4.4.6 -3.2 3 .8 4.4 -4-2.1 -4 2.1 .8-4.4 -3.2-3 4.4-.6z" class="fy"/>
+  </symbol>
+  <symbol id="i-cave" viewBox="0 0 64 64">
+    <path d="M2 56 L24 16 L36 34 L44 24 L62 56z" class="fr"/>
+    <path d="M22 56 V44 a10 10 0 0 1 20 0 V56z" class="fd"/>
+    <circle cx="51" cy="12" r="5" class="fy"/>
+    <path d="M32 40 C27 36 27 32 30 31 C31 31 32 32 32 33 C32 32 33 31 34 31 C37 32 37 36 32 40z" class="fy"/>
+  </symbol>
+  <symbol id="i-calendar" viewBox="0 0 64 64">
+    <rect x="8" y="12" width="48" height="44" rx="8" class="fw st"/>
+    <path d="M8 20 a8 8 0 0 1 8-8 h32 a8 8 0 0 1 8 8 v8 H8z" class="fb"/>
+    <rect x="18" y="6" width="5" height="12" rx="2.5" class="fr"/><rect x="41" y="6" width="5" height="12" rx="2.5" class="fr"/>
+    <path d="M37 33 a10 10 0 1 0 3 15 a8 8 0 0 1 -3 -15z" class="fy"/>
+  </symbol>
+  <symbol id="i-shield" viewBox="0 0 64 64">
+    <path d="M32 5 L54 13 V31 C54 45 44 54 32 59 C20 54 10 45 10 31 V13z" class="fb st"/>
+    <path d="M32 19 l4 8 8.8 1.3 -6.4 6.2 1.5 8.8 -7.9-4.2 -7.9 4.2 1.5-8.8 -6.4-6.2 8.8-1.3z" class="fy"/>
+  </symbol>
+  <symbol id="i-heart" viewBox="0 0 64 64">
+    <path d="M32 56 C8 40 6 22 18 16 C25 13 30 17 32 22 C34 17 39 13 46 16 C58 22 56 40 32 56z" class="fy st"/>
+  </symbol>
+  <symbol id="i-star" viewBox="0 0 64 64">
+    <path d="M32 6 l7.5 16 17.5 2.4 -12.7 12.3 3.1 17.5 -15.4-8.3 -15.4 8.3 3.1-17.5 -12.7-12.3 17.5-2.4z" class="fy st"/>
+  </symbol>
+  <symbol id="i-palm" viewBox="0 0 64 64">
+    <path d="M30 62 C31 46 33 34 36 22 L40 23 C37 35 36 47 38 62z" class="fr"/>
+    <path d="M37 22 C26 12 14 14 8 22 C18 17 28 18 37 22z" class="fy"/>
+    <path d="M37 22 C44 8 56 8 62 14 C52 12 44 15 37 22z" class="fy"/>
+    <path d="M37 22 C30 24 20 30 18 40 C24 31 30 27 37 22z" class="fy"/>
+    <path d="M37 22 C44 26 52 32 52 42 C48 33 42 28 37 22z" class="fy"/>
+  </symbol>
+</svg>
+
+<header class="topbar">
+  <div class="topin">
+    <div class="brand"><svg class="ic"><use href="#i-moon"/></svg> Mengenal Khulafaur Rasyidin</div>
+    <nav class="stepper" id="stepper" aria-label="Bagian pembelajaran"></nav>
+    <div class="track"><div id="bar"></div></div>
+  </div>
+</header>
+
+<main>
+
+<!-- 1. PEMBUKA -->
+<section class="slide active" data-n="1" aria-label="Pembuka dan identitas">
+  <div class="card hero">
+    <div>
+      <span class="badge">Pendidikan Agama Islam • Kelas VI</span>
+      <h1>Mengenal<br>Khulafaur Rasyidin</h1>
+      <p class="ar" style="font-size:2rem;color:var(--navy);margin:0 0 6px">الخلفاء الراشدون</p>
+      <p>Yuk, kenalan dengan <b>4 pemimpin teladan</b> setelah Rasulullah ﷺ wafat! ✨</p>
+      <table class="id-table" aria-label="Identitas media">
+        <tr><td>Mata Pelajaran</td><td>Pendidikan Agama Islam (PAI)</td></tr>
+        <tr><td>Kelas / Fase</td><td>VI (Enam) / Fase C</td></tr>
+        <tr><td>Elemen</td><td>Sejarah Peradaban Islam</td></tr>
+        <tr><td>Materi</td><td>Khulafaur Rasyidin</td></tr>
+      </table>
+      <div class="namebox">
+        <input id="name" type="text" maxlength="30" placeholder="Tulis namamu di sini…" aria-label="Nama murid" autocomplete="given-name">
+        <button class="btn blue" id="startBtn">Mulai Belajar 🚀</button>
+      </div>
+    </div>
+    <div class="art" aria-hidden="true">
+      <svg viewBox="0 0 400 300">
+        <g class="drift sv"><ellipse cx="90" cy="60" rx="38" ry="14" fill="#fff" opacity=".9"/><ellipse cx="112" cy="50" rx="24" ry="14" fill="#fff" opacity=".9"/></g>
+        <g class="drift sv" style="animation-duration:19s"><ellipse cx="300" cy="105" rx="30" ry="11" fill="#fff" opacity=".85"/><ellipse cx="318" cy="97" rx="18" ry="11" fill="#fff" opacity=".85"/></g>
+        <g class="float sv"><use href="#i-moon" x="290" y="14" width="86" height="86"/></g>
+        <g class="twinkle sv"><use href="#i-star" x="40" y="105" width="22" height="22"/></g>
+        <g class="twinkle sv" style="animation-delay:.8s"><use href="#i-star" x="220" y="30" width="16" height="16"/></g>
+        <g class="twinkle sv" style="animation-delay:1.4s"><use href="#i-star" x="170" y="80" width="12" height="12"/></g>
+        <path d="M0 225 Q90 185 190 220 T400 205 V300 H0z" fill="#E9D8C0"/>
+        <path d="M0 255 Q120 225 230 252 T400 240 V300 H0z" fill="#D2B48C"/>
+        <use href="#i-palm" x="10" y="130" width="100" height="110"/>
+        <use href="#i-palm" x="315" y="150" width="80" height="90"/>
+        <use href="#i-mosque" x="105" y="95" width="190" height="190"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 2. TUJUAN -->
+<section class="slide" data-n="2" aria-label="Tujuan pembelajaran">
+  <span class="badge">🎯 Tujuan Pembelajaran</span>
+  <h2 id="hello">Halo, Sahabat Belajar!</h2>
+  <div class="card blue">
+    <h3>Setelah belajar ini, aku bisa:</h3>
+    <p style="font:800 1.3rem 'Baloo 2';color:var(--navy);margin:0">⭐ Mengklasifikasikan Khulafaur Rasyidin</p>
+    <p style="margin-top:8px"><i>Mengklasifikasikan</i> artinya <b>mengelompokkan</b> sesuatu berdasarkan cirinya. Nanti kamu akan mengelompokkan gelar, masa, dan jasa ke khalifah yang tepat!</p>
+  </div>
+  <div class="card">
+    <h3>Langkah-langkah kecil untuk mencapainya</h3>
+    <div class="goal"><div class="n">1</div><div>Menyebutkan <b>urutan</b> empat khalifah dengan benar.</div></div>
+    <div class="goal"><div class="n">2</div><div>Mengelompokkan <b>gelar, masa, dan jasa</b> sesuai khalifahnya.</div></div>
+    <div class="goal"><div class="n">3</div><div>Menceritakan <b>sifat teladan</b> khalifah yang bisa aku tiru.</div></div>
+  </div>
+  <div class="card yellow">
+    <h3>👆 Ketuk kata kunci ini!</h3>
+    <div class="chips" id="chips"></div>
+    <div class="chipdef" id="chipdef" aria-live="polite">Ketuk salah satu kata untuk tahu artinya.</div>
+  </div>
+  <div class="card">
+    <h3>Peta belajar hari ini</h3>
+    <div class="roadmap"><span class="s">📖 Materi</span><span class="a">➜</span><span class="s">🎮 Aktivitas</span><span class="a">➜</span><span class="s">📝 Kuis</span><span class="a">➜</span><span class="s">🌟 Refleksi</span></div>
+  </div>
+</section>
+
+<!-- 3. MATERI -->
+<section class="slide" data-n="3" aria-label="Materi inti">
+  <span class="badge">📖 Materi Inti</span>
+  <h2>Cerita Setelah Rasulullah ﷺ Wafat</h2>
+  <div class="card story">
+    <div class="art" id="storyArt" role="img" aria-label="Gambar cerita"></div>
+    <div class="txt"><h3 id="storyT"></h3><p id="storyD"></p></div>
+    <div class="story-nav">
+      <button class="btn ghost" id="storyPrev">⬅ Sebelumnya</button>
+      <div class="dots" id="storyDots" aria-hidden="true"></div>
+      <button class="btn" id="storyNext">Lanjut ➜</button>
+    </div>
+  </div>
+
+  <div class="card blue">
+    <h3>Apa arti Khulafaur Rasyidin?</h3>
+    <div class="infogrid">
+      <div class="info"><small>Khulafa’</small><b>para khalifah</b> = pemimpin pengganti Nabi</div>
+      <div class="info"><small>Rasyidin</small><b>yang mendapat petunjuk</b> dari Allah ﷻ</div>
+    </div>
+    <p style="margin:0">Jadi, <b>Khulafaur Rasyidin</b> adalah pemimpin pengganti Nabi Muhammad ﷺ yang selalu mendapat petunjuk. Masa kepemimpinan mereka sekitar <b>30 tahun</b>.</p>
+  </div>
+
+  <h3>👇 Kenalan dengan empat khalifah (ketuk gambarnya)</h3>
+  <div class="tabs" id="tabs" role="tablist"></div>
+  <div class="card" id="kcard" aria-live="polite"></div>
+
+  <div class="card yellow">
+    <h3>🧩 Tabel Klasifikasi Ringkas</h3>
+    <div class="tblwrap"><table class="klas" id="klas"></table></div>
+  </div>
+  <div class="card">
+    <h3>🔑 Kunci Ingatan</h3>
+    <div class="order"><b>1 Abu Bakar</b>➜<b>2 Umar</b>➜<b>3 Utsman</b>➜<b>4 Ali</b></div>
+    <p style="margin-top:10px">Ingat singkatannya: <b>A – U – U – A</b>.</p>
+  </div>
+</section>
+
+<!-- 4. AKTIVITAS -->
+<section class="slide" data-n="4" aria-label="Aktivitas interaktif">
+  <span class="badge">🎮 Aktivitas Interaktif</span>
+  <h2>Ayo Mengelompokkan!</h2>
+
+  <div class="card">
+    <h3>Aktivitas 1 — Sortir Kartu</h3>
+    <p><b>Cara main:</b> ketuk satu <b>kartu ciri</b>, lalu ketuk <b>khalifah</b> yang cocok. 👇</p>
+    <div class="prog" aria-hidden="true"><i id="sortProg" style="width:0"></i></div>
+    <div class="hint" id="sortCount">0 dari 12 kartu terkelompok</div>
+    <div class="pool" id="pool"></div>
+    <div class="msg" id="sortMsg" aria-live="polite">Pilih satu kartu dulu ya 😊</div>
+    <div class="buckets" id="buckets"></div>
+    <div style="margin-top:16px"><button class="btn ghost" id="sortReset">🔄 Main lagi</button></div>
+  </div>
+
+  <div class="card">
+    <h3>Aktivitas 2 — Susun Urutan Khalifah</h3>
+    <p>Ketuk nama khalifah mulai dari yang <b>pertama</b> sampai <b>keempat</b>.</p>
+    <div class="slots" id="slots"></div>
+    <div class="pool" id="ordPool"></div>
+    <div class="msg" id="ordMsg" aria-live="polite">Siapa khalifah yang pertama? 🤔</div>
+    <button class="btn ghost" id="ordReset">🔄 Ulangi</button>
+  </div>
+</section>
+
+<!-- 5. KUIS -->
+<section class="slide" data-n="5" aria-label="Kuis dan evaluasi">
+  <span class="badge">📝 Kuis & Evaluasi</span>
+  <h2>Uji Kemampuanmu!</h2>
+  <div class="card" id="quizBox"></div>
+</section>
+
+<!-- 6. REFLEKSI -->
+<section class="slide" data-n="6" aria-label="Umpan balik dan refleksi">
+  <span class="badge">🌟 Umpan Balik & Refleksi</span>
+  <h2>Hasil Belajarmu</h2>
+  <div class="card" id="resBox"></div>
+
+  <div class="card yellow">
+    <h3>💭 Refleksi Diri</h3>
+    <label class="lbl">1. Bagaimana perasaanmu setelah belajar hari ini?</label>
+    <div class="mood" id="mood">
+      <button type="button" data-m="Senang sekali"><span>😄</span>Senang sekali</button>
+      <button type="button" data-m="Paham"><span>🙂</span>Paham</button>
+      <button type="button" data-m="Masih bingung"><span>😕</span>Masih bingung</button>
+      <button type="button" data-m="Ingin belajar lagi"><span>🤩</span>Ingin belajar lagi</button>
+    </div>
+    <label class="lbl">2. Centang yang sudah bisa kamu lakukan:</label>
+    <label class="check"><input type="checkbox" class="rc"> Aku bisa menyebutkan urutan 4 khalifah.</label>
+    <label class="check"><input type="checkbox" class="rc"> Aku bisa mengelompokkan gelar dan jasa sesuai khalifahnya.</label>
+    <label class="check"><input type="checkbox" class="rc"> Aku bisa menyebut sifat teladan para khalifah.</label>
+    <label class="lbl" for="r1">3. Sifat khalifah yang ingin aku tiru adalah…</label>
+    <textarea class="field" id="r1" style="min-height:80px" placeholder="Contoh: Aku ingin jujur seperti Abu Bakar…"></textarea>
+    <label class="lbl" for="r2">4. Hal yang masih ingin aku tanyakan kepada guru…</label>
+    <textarea class="field" id="r2" style="min-height:80px" placeholder="Tulis pertanyaanmu di sini…"></textarea>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px">
+      <button class="btn blue" id="saveRef">💾 Simpan Refleksi</button>
+      <button class="btn ghost" id="copyRef">📋 Salin Rangkuman untuk Guru</button>
+    </div>
+    <div class="msg" id="refMsg" aria-live="polite" style="display:none"></div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px">
+    <button class="btn" id="retryQuiz">🔁 Ulangi Kuis</button>
+    <button class="btn ghost" id="backMateri">📖 Baca Materi Lagi</button>
+  </div>
+</section>
+
+</main>
+
+<footer>Media Pembelajaran PAI • Kelas VI • Fase C • Khulafaur Rasyidin</footer>
+
+<div class="botnav">
+  <div class="botin">
+    <button class="btn ghost" id="prev">⬅ Kembali</button>
+    <div class="now" id="now"></div>
+    <button class="btn blue" id="next">Lanjut ➜</button>
+  </div>
+</div>
+
+<script>
+const $=(s,e=document)=>e.querySelector(s), $$=(s,e=document)=>[...e.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const ico=(id,cls='ic')=>`<svg class="${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
+let student='';
+
+/* ====== umpan balik ====== */
+const APPRE=['Hebat! Jawabanmu benar! 🌟','Masya Allah, pintar sekali! 🎉','Barakallah, kamu luar biasa! 👏','Keren! Kamu teliti sekali! ⭐','Ma’syaAllah, tepat sekali! 🏅','Bagus sekali, pertahankan ya! 👍'];
+const MOTI=['Tidak apa-apa, ayo semangat! Kamu pasti bisa! 💪','Jangan menyerah ya, setiap kesalahan membuat kita makin pintar! 🌱','Hampir berhasil! Baca lagi pelan-pelan, nanti pasti bisa! 🚀','Tetap semangat! Kamu hebat sudah berusaha! 🌈'];
+
+function burst(n=26){
+  if(reduce) return;
+  const em=['⭐','🌟','✨','🎉','🌙'];
+  for(let i=0;i<n;i++){
+    const s=document.createElement('span');s.className='conf';s.textContent=pick(em);
+    s.style.left=Math.random()*100+'vw';s.style.animationDelay=Math.random()*.5+'s';
+    s.style.fontSize=(16+Math.random()*18)+'px';
+    document.body.appendChild(s);setTimeout(()=>s.remove(),3600);
+  }
+}
+
+/* ====== data khalifah ====== */
+const K={
+ ab:{order:1,short:'Abu Bakar',name:'Abu Bakar ash-Shiddiq',ar:'أبو بكر الصديق',icon:'i-cave',
+  gelar:'Ash-Shiddiq (yang selalu membenarkan)',masa:'11–13 H (632–634 M)',
+  sifat:['Jujur','Lembut hati','Dermawan'],
+  jasa:['Menemani Rasulullah ﷺ hijrah dan bersembunyi di gua Tsur','Memerangi nabi palsu (Musailamah) dan orang-orang yang murtad','Mulai mengumpulkan tulisan Al-Qur’an yang tersebar'],
+  wafat:'Wafat karena sakit dan dimakamkan di samping Rasulullah ﷺ.',
+  fun:'Abu Bakar pernah menyerahkan hampir seluruh hartanya untuk perjuangan Islam. Ia sangat dermawan!'},
+ um:{order:2,short:'Umar',name:'Umar bin Khattab',ar:'عمر بن الخطاب',icon:'i-calendar',
+  gelar:'Al-Faruq (pembeda antara yang benar dan yang salah)',masa:'13–23 H (634–644 M)',
+  sifat:['Tegas','Adil','Berani'],
+  jasa:['Membangun Baitul Mal (kas negara) untuk menolong rakyat','Menetapkan awal kalender Hijriyah','Memperluas wilayah Islam (Syam, Mesir, dan Persia)'],
+  wafat:'Wafat setelah diserang saat memimpin shalat Subuh.',
+  fun:'Umar suka berkeliling pada malam hari untuk melihat keadaan rakyatnya dan menolong yang kesusahan.'},
+ ut:{order:3,short:'Utsman',name:'Utsman bin Affan',ar:'عثمان بن عفان',icon:'i-book',
+  gelar:'Dzun Nurain (pemilik dua cahaya)',masa:'23–35 H (644–656 M)',
+  sifat:['Pemalu','Dermawan','Sabar'],
+  jasa:['Membukukan Al-Qur’an dalam satu mushaf (Mushaf Utsmani)','Membangun angkatan laut Islam','Memperluas Masjidil Haram dan Masjid Nabawi'],
+  wafat:'Wafat dibunuh para pemberontak di rumahnya.',
+  fun:'Disebut Dzun Nurain karena menikahi dua putri Rasulullah ﷺ, yaitu Ruqayyah dan Ummu Kultsum. Ia juga membeli sumur Raumah untuk dimanfaatkan semua orang.'},
+ al:{order:4,short:'Ali',name:'Ali bin Abi Thalib',ar:'علي بن أبي طالب',icon:'i-shield',
+  gelar:'Abu Turab (julukan dari Rasulullah ﷺ)',masa:'35–40 H (656–661 M)',
+  sifat:['Pemberani','Cerdas','Berilmu'],
+  jasa:['Berjuang menegakkan keadilan dan menjaga persatuan umat','Dikenal sangat cerdas dalam memutuskan perkara','Memindahkan pusat pemerintahan ke Kufah'],
+  wafat:'Wafat setelah diserang saat berangkat shalat Subuh.',
+  fun:'Ali adalah sepupu dan menantu Rasulullah ﷺ (suami Fatimah). Pada malam hijrah, ia berani tidur di tempat tidur Nabi ﷺ.'}
+};
+const KEYS=['ab','um','ut','al'];
+
+/* ====== navigasi ====== */
+const N=6, LABELS=['Pembuka','Tujuan','Materi','Aktivitas','Kuis','Refleksi'], EMO=['👋','🎯','📖','🎮','📝','🌟'];
+let cur=1;
+$('#stepper').innerHTML=LABELS.map((l,i)=>`<button class="step" data-n="${i+1}" aria-label="Bagian ${i+1}: ${l}"><span class="dot">${EMO[i]}</span>${l}</button>`).join('');
+$$('.step').forEach(b=>b.onclick=()=>go(+b.dataset.n));
+function go(n){
+  if(n<1||n>N) return; cur=n;
+  $$('.slide').forEach(s=>s.classList.toggle('active',+s.dataset.n===n));
+  $$('.step').forEach(b=>{const k=+b.dataset.n;b.classList.toggle('active',k===n);b.classList.toggle('done',k<n);b.setAttribute('aria-current',k===n?'step':'false');});
+  $('#bar').style.width=((n-1)/(N-1)*100)+'%';
+  $('#prev').disabled=n===1; $('#next').disabled=n===N;
+  $('#now').textContent=`${n}/${N} • ${LABELS[n-1]}`;
+  if(n===6) renderResults();
+  if(n===2) $('#hello').textContent=student?`Halo, ${student}! 👋`:'Halo, Sahabat Belajar!';
+  window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});
+}
+$('#prev').onclick=()=>go(cur-1); $('#next').onclick=()=>go(cur+1);
+$('#startBtn').onclick=()=>{student=$('#name').value.trim();go(2)};
+$('#name').addEventListener('keydown',e=>{if(e.key==='Enter')$('#startBtn').click()});
+
+/* ====== tujuan: kata kunci ====== */
+const DEF={
+ 'Khalifah':'Khalifah = pemimpin pengganti Nabi Muhammad ﷺ setelah beliau wafat.',
+ 'Klasifikasi':'Klasifikasi = mengelompokkan sesuatu berdasarkan ciri yang sama. Contoh: gelar “Al-Faruq” dikelompokkan ke Umar.',
+ 'Gelar':'Gelar = nama kehormatan atau julukan karena sifat atau jasa seseorang.',
+ 'Jasa':'Jasa = kebaikan atau perbuatan besar yang bermanfaat bagi orang banyak.'
+};
+$('#chips').innerHTML=Object.keys(DEF).map(k=>`<button class="chip" type="button">${k}</button>`).join('');
+$$('.chip').forEach(c=>c.onclick=()=>{$$('.chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');$('#chipdef').textContent=DEF[c.textContent];});
+
+/* ====== materi: cerita bergambar ====== */
+const bg=`<rect width="320" height="180" fill="#FFF0C4"/><path d="M0 140 Q80 112 160 136 T320 126 V180 H0z" fill="#E9D8C0"/><path d="M0 162 Q100 140 200 160 T320 152 V180 H0z" fill="#D2B48C"/>`;
+const people=[70,115,160,205,250].map((x,i)=>{const c=['#2E6DB4','#8B5E3C','#F6B93B','#2E6DB4','#8B5E3C'][i];return `<g class="float sv" style="animation-delay:${i*.35}s"><circle cx="${x}" cy="102" r="13" fill="${c}"/><path d="M${x-18} 152 v-24 a18 18 0 0 1 36 0 v24z" fill="${c}"/></g>`}).join('');
+const story=[
+ {t:'Madinah, setelah Rasulullah ﷺ wafat',d:'Kaum Muslimin sangat sedih. Siapa ya yang akan memimpin mereka sekarang? 🤔',
+  svg:`<svg viewBox="0 0 320 180">${bg}<g class="float sv"><use href="#i-moon" x="245" y="10" width="52" height="52"/></g><use href="#i-palm" x="10" y="70" width="70" height="80"/><use href="#i-palm" x="250" y="82" width="60" height="70"/><use href="#i-mosque" x="95" y="42" width="130" height="130"/><g class="float2 sv"><ellipse cx="62" cy="38" rx="22" ry="16" fill="#fff" stroke="#E9D8C0" stroke-width="3"/><text x="62" y="47" text-anchor="middle" font-size="26" font-weight="800" fill="#2E6DB4" font-family="Baloo 2">?</text></g><g class="twinkle sv"><use href="#i-star" x="195" y="14" width="14" height="14"/></g></svg>`},
+ {t:'Para sahabat bermusyawarah',d:'Mereka berkumpul dan berdiskusi dengan tenang. Mereka memilih pemimpin yang jujur, adil, dan dipercaya. 🤝',
+  svg:`<svg viewBox="0 0 320 180">${bg}<rect x="85" y="14" width="150" height="34" rx="17" fill="#fff" stroke="#F6B93B" stroke-width="3"/><text x="160" y="37" text-anchor="middle" font-size="18" font-weight="800" fill="#6B4226" font-family="Baloo 2">Musyawarah</text>${people}<g class="twinkle sv"><use href="#i-heart" x="148" y="58" width="24" height="24"/></g></svg>`},
+ {t:'Lahirlah Khulafaur Rasyidin!',d:'Pemimpin pengganti Nabi disebut khalifah. Ada empat khalifah yang mendapat petunjuk. Yuk, kenalan satu per satu! 🎉',
+  svg:`<svg viewBox="0 0 320 180">${bg}<circle cx="160" cy="70" r="70" fill="#F6B93B" opacity=".25"/><rect x="60" y="10" width="200" height="30" rx="15" fill="#2E6DB4"/><text x="160" y="31" text-anchor="middle" font-size="16" font-weight="800" fill="#fff" font-family="Baloo 2">Khulafaur Rasyidin</text>${[['i-cave','Abu Bakar'],['i-calendar','Umar'],['i-book','Utsman'],['i-shield','Ali']].map((e,i)=>`<g class="float sv" style="animation-delay:${i*.4}s"><use href="#${e[0]}" x="${16+i*76}" y="58" width="60" height="60"/></g><text x="${46+i*76}" y="138" text-anchor="middle" font-size="13" font-weight="800" fill="#3b2616" font-family="Baloo 2">${e[1]}</text>`).join('')}</svg>`}
+];
+let si=0;
+function renderStory(){
+  const p=story[si];
+  $('#storyArt').innerHTML=p.svg; $('#storyT').textContent=p.t; $('#storyD').textContent=p.d;
+  $('#storyDots').innerHTML=story.map((_,i)=>`<i class="${i===si?'on':''}"></i>`).join('');
+  $('#storyPrev').disabled=si===0; $('#storyNext').disabled=si===story.length-1;
+}
+$('#storyPrev').onclick=()=>{si=Math.max(0,si-1);renderStory()};
+$('#storyNext').onclick=()=>{si=Math.min(story.length-1,si+1);renderStory()};
+renderStory();
+
+/* ====== materi: tab khalifah ====== */
+$('#tabs').innerHTML=KEYS.map(k=>`<button class="tab" role="tab" data-k="${k}" aria-label="${K[k].name}">${ico(K[k].icon)}${K[k].short}</button>`).join('');
+function showK(key){
+  const k=K[key];
+  $$('.tab').forEach(t=>{const on=t.dataset.k===key;t.classList.toggle('on',on);t.setAttribute('aria-selected',on)});
+  $('#kcard').innerHTML=`<div class="kcard">
+    <div class="khead">${ico(k.icon)}<div><span class="badge">Khalifah ke-${k.order}</span><h2 style="margin:0">${k.name}</h2><div class="ar">${k.ar}</div></div></div>
+    <div class="infogrid"><div class="info"><small>🏅 Gelar</small>${k.gelar}</div><div class="info b"><small>📅 Masa menjabat</small>${k.masa}</div></div>
+    <b>💛 Sifat teladan</b><div class="sifat">${k.sifat.map(s=>`<span>${s}</span>`).join('')}</div>
+    <b>🌟 Jasa utama</b><ul class="jasa">${k.jasa.map(j=>`<li>${j}</li>`).join('')}</ul>
+    <p><b>🕊️ Wafat:</b> ${k.wafat}</p>
+    <div class="tip"><b>💡 Tahukah kamu?</b><br>${k.fun}</div></div>`;
+}
+$$('.tab').forEach(t=>t.onclick=()=>showK(t.dataset.k));
+showK('ab');
+$('#klas').innerHTML=`<thead><tr><th>Khalifah</th><th>Gelar</th><th>Masa</th><th>Jasa utama</th></tr></thead><tbody>${KEYS.map(k=>`<tr><td><b>${K[k].order}. ${K[k].short}</b></td><td>${K[k].gelar.split(' (')[0]}</td><td>${K[k].masa.split(' (')[0]}</td><td>${K[k].jasa[0]}</td></tr>`).join('')}</tbody>`;
+
+/* ====== aktivitas 1: sortir kartu ====== */
+const CARDS=[
+ ['Menemani Nabi ﷺ di gua Tsur','ab'],['Bergelar Ash-Shiddiq','ab'],['Memerangi nabi palsu Musailamah','ab'],
+ ['Bergelar Al-Faruq','um'],['Menetapkan kalender Hijriyah','um'],['Membangun Baitul Mal','um'],
+ ['Bergelar Dzun Nurain','ut'],['Membukukan Mushaf Utsmani','ut'],['Membeli sumur Raumah untuk umat','ut'],
+ ['Menantu Nabi ﷺ, suami Fatimah','al'],['Tidur di tempat tidur Nabi ﷺ saat hijrah','al'],['Sepupu Nabi ﷺ yang masuk Islam sejak kecil','al']
+].map((c,i)=>({id:i,t:c[0],k:c[1]}));
+let sort;
+function sortMsg(t,c=''){const m=$('#sortMsg');m.className='msg '+c;m.textContent=t}
+function initSort(){
+  sort={sel:null,left:shuffle(CARDS),done:0,wrong:0,placed:{ab:[],um:[],ut:[],al:[]}};
+  sortMsg('Pilih satu kartu dulu ya 😊'); renderSort();
+}
+function renderSort(){
+  $('#pool').innerHTML=sort.left.map(c=>`<button class="clue ${sort.sel===c.id?'sel':''}" data-id="${c.id}">${c.t}</button>`).join('')||'<b>🎉 Semua kartu sudah terkelompok!</b>';
+  $$('#pool .clue').forEach(b=>b.onclick=()=>{const id=+b.dataset.id;sort.sel=sort.sel===id?null:id;if(sort.sel!==null)sortMsg('Sekarang ketuk khalifah yang cocok 👇');else sortMsg('Pilih satu kartu dulu ya 😊');renderSort()});
+  $('#buckets').innerHTML=KEYS.map(k=>`<button class="bucket ${sort.sel!==null?'ready':''}" data-k="${k}" aria-label="Khalifah ${K[k].short}">${ico(K[k].icon)}<b>${K[k].order}. ${K[k].short}</b><div class="placed">${sort.placed[k].map(t=>`<span>${t}</span>`).join('')}</div></button>`).join('');
+  $$('.bucket').forEach(b=>b.onclick=()=>dropTo(b.dataset.k));
+  $('#sortProg').style.width=(sort.done/12*100)+'%'; $('#sortCount').textContent=`${sort.done} dari 12 kartu terkelompok`;
+}
+function dropTo(k){
+  if(sort.sel===null){sortMsg('Pilih satu kartu dulu ya 😊');return}
+  const c=CARDS[sort.sel];
+  if(c.k===k){
+    sort.placed[k].push(c.t); sort.left=sort.left.filter(x=>x.id!==c.id); sort.sel=null; sort.done++;
+    renderSort();
+    if(sort.done===12){sortMsg(`🏆 Luar biasa${student?', '+student:''}! Semua kartu terkelompok dengan tepat${sort.wrong?` (salah ${sort.wrong} kali, tapi kamu tidak menyerah!)`:' tanpa salah sedikit pun!'}`,'good');burst(40)}
+    else sortMsg(pick(APPRE),'good');
+  }else{
+    sort.wrong++;
+    sortMsg(pick(MOTI)+' Coba pilih khalifah yang lain ya.','try');
+    const el=$(`#pool .clue.sel`); if(el){el.classList.remove('shake');void el.offsetWidth;el.classList.add('shake')}
+  }
+}
+$('#sortReset').onclick=initSort; initSort();
+
+/* ====== aktivitas 2: susun urutan ====== */
+let ord;
+function ordMsg(t,c=''){const m=$('#ordMsg');m.className='msg '+c;m.textContent=t}
+function initOrd(){ord={chosen:[],pool:shuffle(KEYS)};ordMsg('Siapa khalifah yang pertama? 🤔');renderOrd()}
+function renderOrd(){
+  $('#slots').innerHTML=[0,1,2,3].map(i=>{const k=ord.chosen[i];return k?`<div class="slot full">${ico(K[k].icon)}${K[k].short}</div>`:`<div class="slot"><small>Khalifah ke-${i+1}</small>?</div>`}).join('');
+  $('#ordPool').innerHTML=ord.pool.filter(k=>!ord.chosen.includes(k)).map(k=>`<button class="clue" data-k="${k}">${K[k].name}</button>`).join('');
+  $$('#ordPool .clue').forEach(b=>b.onclick=()=>{
+    const k=b.dataset.k, need=KEYS[ord.chosen.length];
+    if(k===need){ord.chosen.push(k);renderOrd();
+      if(ord.chosen.length===4){ordMsg(`🎉 Hebat${student?', '+student:''}! Urutannya benar: Abu Bakar, Umar, Utsman, Ali.`,'good');burst(30)}
+      else ordMsg(pick(APPRE)+` Siapa khalifah ke-${ord.chosen.length+1}?`,'good');
+    }else{ordMsg(pick(MOTI)+` Ingat kunci A–U–U–A. Khalifah ke-${ord.chosen.length+1} bukan ${K[k].short}.`,'try');b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake')}
+  });
+}
+$('#ordReset').onclick=initOrd; initOrd();
+
+/* ====== bank soal ====== */
+const QPG=[
+ {q:'Khulafaur Rasyidin artinya …',o:['Pemimpin pengganti Nabi yang mendapat petunjuk','Pedagang yang kaya raya','Panglima perang saja','Guru mengaji di Madinah'],a:0,tag:'umum',e:'Khulafaur Rasyidin adalah para khalifah pengganti Nabi ﷺ yang mendapat petunjuk dari Allah.'},
+ {q:'Urutan Khulafaur Rasyidin yang benar adalah …',o:['Abu Bakar, Umar, Utsman, Ali','Umar, Abu Bakar, Ali, Utsman','Abu Bakar, Utsman, Umar, Ali','Ali, Utsman, Umar, Abu Bakar'],a:0,tag:'umum',e:'Ingat kunci A–U–U–A: Abu Bakar, Umar, Utsman, Ali.'},
+ {q:'Khalifah pertama setelah Rasulullah ﷺ wafat adalah …',o:['Umar bin Khattab','Abu Bakar ash-Shiddiq','Utsman bin Affan','Ali bin Abi Thalib'],a:1,tag:'ab',e:'Abu Bakar ash-Shiddiq dipilih sebagai khalifah pertama.'},
+ {q:'Gelar “Ash-Shiddiq” yang berarti “yang selalu membenarkan” dimiliki oleh …',o:['Abu Bakar','Umar','Utsman','Ali'],a:0,tag:'ab',e:'Abu Bakar bergelar Ash-Shiddiq karena selalu membenarkan Rasulullah ﷺ.'},
+ {q:'Khalifah yang bergelar Al-Faruq adalah …',o:['Abu Bakar','Umar bin Khattab','Utsman bin Affan','Ali bin Abi Thalib'],a:1,tag:'um',e:'Al-Faruq artinya pembeda antara yang benar dan yang salah, yaitu gelar Umar.'},
+ {q:'Dzun Nurain berarti pemilik dua cahaya. Gelar ini dimiliki oleh …',o:['Abu Bakar','Umar','Utsman','Ali'],a:2,tag:'ut',e:'Utsman bin Affan menikahi dua putri Rasulullah ﷺ sehingga dijuluki Dzun Nurain.'},
+ {q:'Khalifah keempat dalam Khulafaur Rasyidin adalah …',o:['Abu Bakar','Umar','Utsman','Ali bin Abi Thalib'],a:3,tag:'al',e:'Ali bin Abi Thalib adalah khalifah keempat.'},
+ {q:'Sahabat yang menemani Rasulullah ﷺ hijrah dan bersembunyi di gua Tsur adalah …',o:['Umar bin Khattab','Abu Bakar ash-Shiddiq','Utsman bin Affan','Ali bin Abi Thalib'],a:1,tag:'ab',e:'Abu Bakar menemani Nabi ﷺ saat hijrah ke Madinah dan bersembunyi di gua Tsur.'},
+ {q:'Pada masa Khalifah Abu Bakar, apa yang dilakukan terhadap tulisan Al-Qur’an?',o:['Mengumpulkan tulisan Al-Qur’an yang tersebar','Menerjemahkannya ke bahasa Persia','Mengganti susunan ayatnya','Membukukannya menjadi banyak mushaf lalu dikirim ke kota-kota'],a:0,tag:'ab',e:'Abu Bakar mulai mengumpulkan tulisan Al-Qur’an. Pembukuan menjadi mushaf yang dikirim ke kota-kota dilakukan oleh Utsman.'},
+ {q:'Baitul Mal (kas negara) dibangun pada masa khalifah …',o:['Abu Bakar','Umar bin Khattab','Utsman bin Affan','Ali bin Abi Thalib'],a:1,tag:'um',e:'Umar membangun Baitul Mal untuk menolong rakyat.'},
+ {q:'Kalender Hijriyah mulai ditetapkan pada masa khalifah …',o:['Umar bin Khattab','Abu Bakar ash-Shiddiq','Ali bin Abi Thalib','Utsman bin Affan'],a:0,tag:'um',e:'Umar menetapkan awal tahun Hijriyah, yaitu saat hijrah Nabi ﷺ.'},
+ {q:'Mushaf Utsmani dibuat pada masa khalifah …',o:['Abu Bakar','Umar','Utsman','Ali'],a:2,tag:'ut',e:'Utsman membukukan Al-Qur’an dalam satu mushaf yang disebut Mushaf Utsmani.'},
+ {q:'Utsman bin Affan menikah dengan dua putri Rasulullah ﷺ, yaitu …',o:['Ruqayyah dan Ummu Kultsum','Fatimah dan Zainab','Aisyah dan Hafshah','Khadijah dan Maimunah'],a:0,tag:'ut',e:'Utsman menikahi Ruqayyah, lalu Ummu Kultsum. Itulah sebabnya ia disebut Dzun Nurain.'},
+ {q:'Ali bin Abi Thalib adalah … Rasulullah ﷺ.',o:['Sepupu dan menantu','Paman','Kakek','Tetangga'],a:0,tag:'al',e:'Ali adalah sepupu Nabi ﷺ dan suami Fatimah, putri Nabi.'},
+ {q:'Ali bin Abi Thalib masuk Islam sejak …',o:['Masih kecil','Sudah tua','Setelah Perang Badar','Setelah Fathu Makkah'],a:0,tag:'al',e:'Ali termasuk yang masuk Islam sejak masih kecil.'},
+ {q:'Sifat yang terkenal dari Khalifah Umar bin Khattab adalah …',o:['Tegas dan adil','Ragu-ragu','Suka marah tanpa alasan','Tidak peduli rakyat'],a:0,tag:'um',e:'Umar dikenal tegas, adil, dan sangat peduli pada rakyat.'},
+ {q:'Sifat yang terkenal dari Khalifah Utsman bin Affan adalah …',o:['Pemalu dan dermawan','Keras dan tidak mau mendengar','Pelit dengan hartanya','Suka membanggakan diri'],a:0,tag:'ut',e:'Utsman sangat pemalu dan dermawan.'},
+ {q:'Sifat yang terkenal dari Khalifah Ali bin Abi Thalib adalah …',o:['Pemberani dan berilmu','Penakut','Malas belajar','Suka menyendiri'],a:0,tag:'al',e:'Ali dikenal sangat berani dan cerdas.'},
+ {q:'Masa kepemimpinan Khulafaur Rasyidin berlangsung sekitar …',o:['30 tahun','10 tahun','100 tahun','3 tahun'],a:0,tag:'umum',e:'Dari tahun 11 H sampai 40 H, sekitar 30 tahun.'},
+ {q:'Utsman bin Affan membeli sumur Raumah agar …',o:['Airnya bisa dimanfaatkan seluruh kaum Muslimin','Dijual lagi dengan harga mahal','Dipakai sendiri oleh keluarganya','Ditutup supaya tidak dipakai orang'],a:0,tag:'ut',e:'Utsman membeli sumur Raumah lalu mewakafkannya untuk semua orang.'}
+];
+const QIS=[
+ {q:'Khalifah pertama setelah Rasulullah ﷺ wafat adalah ______.',h:'Ia menemani Nabi ﷺ hijrah ke Madinah.',sw:['abubakar'],ans:'Abu Bakar ash-Shiddiq',tag:'ab',e:'Abu Bakar ash-Shiddiq adalah khalifah pertama.'},
+ {q:'Khalifah yang bergelar Al-Faruq adalah ______.',h:'Ia sangat tegas dan adil.',sw:['umar'],ans:'Umar bin Khattab',tag:'um',e:'Al-Faruq adalah gelar Umar bin Khattab.'},
+ {q:'Khalifah yang dijuluki Dzun Nurain (pemilik dua cahaya) adalah ______.',h:'Ia menikahi dua putri Rasulullah ﷺ.',sw:['utsman','usman','uthman','ustman'],ans:'Utsman bin Affan',tag:'ut',e:'Dzun Nurain adalah julukan Utsman bin Affan.'},
+ {q:'Khalifah keempat yang juga menantu Rasulullah ﷺ adalah ______.',h:'Ia suami Fatimah. Namanya pendek, hanya tiga huruf.',eq:['ali','alibinabithalib','alibinabuthalib','alibinabitholib'],sw:['alibin'],ans:'Ali bin Abi Thalib',tag:'al',e:'Ali bin Abi Thalib adalah khalifah keempat sekaligus menantu Nabi ﷺ.'},
+ {q:'Gelar Abu Bakar yang artinya “yang selalu membenarkan” adalah ______.',h:'Diawali “Ash-…”.',eq:['shiddiq','siddiq'],sw:['ashshiddiq','asshiddiq','ashsiddiq','assiddiq','alshiddiq','alsiddiq'],ans:'Ash-Shiddiq',tag:'ab',e:'Abu Bakar bergelar Ash-Shiddiq.'},
+ {q:'Kalender Hijriyah mulai ditetapkan pada masa Khalifah ______.',h:'Khalifah kedua.',sw:['umar'],ans:'Umar bin Khattab',tag:'um',e:'Umar menetapkan kalender Hijriyah.'},
+ {q:'Al-Qur’an dibukukan menjadi Mushaf Utsmani pada masa Khalifah ______.',h:'Namanya sama dengan nama mushafnya.',sw:['utsman','usman','uthman','ustman'],ans:'Utsman bin Affan',tag:'ut',e:'Mushaf Utsmani dinamai dari Khalifah Utsman.'},
+ {q:'Khulafaur Rasyidin artinya pemimpin pengganti Nabi yang mendapat ______ dari Allah.',h:'Allah menunjukkan jalan yang lurus.',eq:['petunjuk','hidayah'],sw:['petunjuk','hidayah'],ans:'petunjuk (hidayah)',tag:'umum',e:'“Rasyidin” berarti orang-orang yang mendapat petunjuk.'},
+ {q:'Nabi palsu yang diperangi pada masa Abu Bakar bernama ______.',h:'Diawali huruf M.',sw:['musailamah','musailimah','musaylamah','musailama'],ans:'Musailamah al-Kadzdzab',tag:'ab',e:'Abu Bakar memerangi Musailamah, orang yang mengaku sebagai nabi.'},
+ {q:'Pada malam hijrah, yang tidur di tempat tidur Rasulullah ﷺ adalah ______.',h:'Ia kemudian menjadi khalifah keempat.',eq:['ali','alibinabithalib','alibinabuthalib','alibinabitholib'],sw:['alibin'],ans:'Ali bin Abi Thalib',tag:'al',e:'Ali berani tidur di tempat tidur Nabi ﷺ agar Nabi dapat berangkat hijrah dengan selamat.'}
+];
+const QUR=[
+ {q:'Sebutkan urutan Khulafaur Rasyidin dari yang pertama sampai keempat, beserta gelar yang kamu ketahui!',need:5,
+  pts:[{l:'Menyebut Abu Bakar',re:/abu\s*bakar|abubakar/},{l:'Menyebut Umar',re:/umar/},{l:'Menyebut Utsman',re:/utsman|usman|uthman/},{l:'Menyebut Ali',re:/\bali\b/},{l:'Gelar Ash-Shiddiq',re:/shiddiq|siddiq/},{l:'Gelar Al-Faruq',re:/faruq|faruk/},{l:'Gelar Dzun Nurain',re:/nurain|nurayn|dzun\s*nur|zun\s*nur/}],
+  key:'Abu Bakar ash-Shiddiq, Umar bin Khattab (Al-Faruq), Utsman bin Affan (Dzun Nurain), dan Ali bin Abi Thalib.'},
+ {q:'Jelaskan dengan kata-katamu sendiri, apa arti Khulafaur Rasyidin!',need:2,
+  pts:[{l:'Menyebut pemimpin / pengganti / khalifah',re:/pemimpin|pengganti|penerus|khalifah/},{l:'Menyebut Nabi / Rasulullah',re:/nabi|rasul|muhammad/},{l:'Menyebut mendapat petunjuk',re:/petunjuk|hidayah|lurus|benar|terbimbing/}],
+  key:'Khulafaur Rasyidin adalah para khalifah (pemimpin pengganti) Nabi Muhammad ﷺ yang mendapat petunjuk dari Allah, yaitu Abu Bakar, Umar, Utsman, dan Ali.'},
+ {q:'Sebutkan dua jasa Khalifah Umar bin Khattab untuk umat Islam!',need:2,
+  pts:[{l:'Membangun Baitul Mal',re:/baitul\s*mal|baitulmal|kas negara/},{l:'Menetapkan kalender Hijriyah',re:/hijriyah|hijriah|kalender/},{l:'Memperluas wilayah Islam',re:/wilayah|perluas|persia|mesir|syam|yerusalem|palestina|kekuasaan/},{l:'Shalat tarawih berjamaah',re:/tarawih/},{l:'Menata pemerintahan',re:/administrasi|diwan|gaji|pemerintahan|peradilan|hakim/}],
+  key:'Contoh: (1) membangun Baitul Mal untuk menolong rakyat, (2) menetapkan kalender Hijriyah, atau memperluas wilayah Islam.'},
+ {q:'Mengapa Khalifah Utsman membukukan Al-Qur’an dalam satu mushaf? Jelaskan!',need:2,
+  pts:[{l:'Ada perbedaan bacaan',re:/beda|perbedaan|bacaan|dialek|qiraat|perselisihan|berselisih/},{l:'Agar satu / seragam',re:/satu|seragam|sama/},{l:'Menjaga keaslian / persatuan umat',re:/menjaga|terjaga|dijaga|keaslian|asli|murni|bersatu|persatuan|rukun|bertengkar/}],
+  key:'Karena ada perbedaan cara membaca Al-Qur’an di berbagai daerah. Dengan satu mushaf, bacaan menjadi seragam, Al-Qur’an tetap terjaga, dan umat Islam tidak berselisih.'},
+ {q:'Pilih satu khalifah. Sebutkan satu sifat teladannya, lalu ceritakan bagaimana kamu bisa meneladaninya di rumah atau di sekolah!',need:3,
+  pts:[{l:'Menyebut nama khalifah',re:/abu\s*bakar|umar|utsman|usman|\bali\b/},{l:'Menyebut sifat teladan',re:/jujur|adil|tegas|dermawan|pemalu|malu|berani|cerdas|pintar|berilmu|ilmu|sabar|lembut|setia|membenarkan|peduli|berbagi/},{l:'Memberi contoh nyata dalam kehidupan',re:/saya|aku|kita|sekolah|rumah|teman|orang tua|ayah|ibu|guru|belajar|membantu|berbagi|bersedekah|disiplin/}],
+  key:'Contoh: Aku ingin meneladani Abu Bakar yang jujur. Di sekolah aku tidak menyontek dan selalu berkata benar kepada guru dan teman.'}
+];
+const PTS={pg:2,is:3,ur:6};
+const PARTS=[{id:'pg',name:'Bagian A • Pilihan Ganda',n:QPG.length,icon:'🔤'},{id:'is',name:'Bagian B • Isian Singkat',n:QIS.length,icon:'✏️'},{id:'ur',name:'Bagian C • Uraian',n:QUR.length,icon:'📜'}];
+
+/* ====== mesin kuis ====== */
+let Q=null;
+const box=$('#quizBox');
+function norm(s){
+  return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .replace(/\b(khalifah|sayyidina|sayidina|imam|sahabat|ra)\b/g,'').replace(/[^a-z0-9]/g,'');
+}
+function renderQuiz(){
+  if(!Q){
+    box.innerHTML=`<h3>Selamat datang di kuis! 🎉</h3>
+    <p>Kerjakan dengan teliti ya. Setiap jawaban langsung ada umpan baliknya. Kalau belum tepat, jangan sedih — itu tanda kamu sedang belajar. 💪</p>
+    <div class="intro-parts">
+      <div class="part"><div class="big">20</div>🔤 Pilihan Ganda<br><small>@ 2 poin</small></div>
+      <div class="part b2"><div class="big">10</div>✏️ Isian Singkat<br><small>@ 3 poin</small></div>
+      <div class="part"><div class="big">5</div>📜 Uraian<br><small>@ 6 poin</small></div>
+    </div>
+    <p><b>Total: 35 soal • Nilai maksimal 100.</b></p>
+    <button class="btn blue" id="qStart">Mulai Kuis 🚀</button>`;
+    $('#qStart').onclick=()=>{Q={phase:'q',part:0,i:0,pg:[],is:[],ur:[],order:QPG.map(()=>shuffle([0,1,2,3]))};renderQuiz()};
+    return;
+  }
+  if(Q.phase==='between') return renderBetween();
+  if(Q.phase==='end') return renderEnd();
+  renderQ();
+}
+function overall(){return Q.pg.length+Q.is.length+Q.ur.length}
+function head(P){
+  return `<div class="qhead"><span>${P.icon} ${P.name}</span><span>Soal ${Q.i+1} dari ${P.n}</span></div>
+  <div class="prog" aria-hidden="true"><i style="width:${overall()/35*100}%"></i></div>`;
+}
+function renderQ(){
+  const P=PARTS[Q.part];
+  let body='';
+  if(P.id==='pg'){
+    const q=QPG[Q.i],L='ABCD';
+    body=`<div class="qtext">${Q.i+1}. ${q.q}</div><div class="opts">${Q.order[Q.i].map((oi,j)=>`<button class="opt" data-o="${oi}"><span class="L">${L[j]}</span><span>${q.o[oi]}</span></button>`).join('')}</div>`;
+  }else if(P.id==='is'){
+    const q=QIS[Q.i];
+    body=`<div class="qtext">${Q.i+1}. ${q.q}</div><div class="hint">💡 Petunjuk: ${q.h}</div>
+    <input class="field" id="ans" type="text" autocomplete="off" aria-label="Jawabanmu" placeholder="Ketik jawabanmu di sini…"><div class="qfoot"><button class="btn blue" id="chk">Periksa ✔</button></div>`;
+  }else{
+    const q=QUR[Q.i];
+    body=`<div class="qtext">${Q.i+1}. ${q.q}</div><div class="hint">✍️ Tulis jawabanmu dengan kalimat yang lengkap ya.</div>
+    <textarea class="field" id="ans" aria-label="Jawabanmu" placeholder="Tulis jawabanmu di sini…"></textarea><div class="qfoot"><button class="btn blue" id="chk">Periksa Jawaban ✔</button></div>`;
+  }
+  box.innerHTML=head(P)+body+`<div id="fbBox" aria-live="polite"></div><div class="qfoot"><button class="btn" id="qNext" style="display:none"></button></div>`;
+  if(P.id==='pg') $$('.opt').forEach(b=>b.onclick=()=>answerPG(+b.dataset.o,b));
+  else{
+    $('#chk').onclick=P.id==='is'?checkIS:checkUR;
+    if(P.id==='is') $('#ans').addEventListener('keydown',e=>{if(e.key==='Enter')checkIS()});
+    $('#ans').focus({preventScroll:true});
+  }
+}
+function fbHTML(ok,expl,extra=''){
+  return `<div class="fb ${ok?'good':'try'}"><div class="em">${ok?'🌟':'💪'}</div><div><b>${ok?pick(APPRE):pick(MOTI)}</b>${extra}<p>${expl}</p></div></div>`;
+}
+function showNext(){
+  const P=PARTS[Q.part],last=Q.i+1>=P.n,b=$('#qNext');
+  b.style.display='';b.textContent=last?(Q.part===2?'Selesai 🎉':'Selesai bagian ini ➜'):'Soal berikutnya ➜';
+  b.onclick=()=>{ if(last){Q.phase=Q.part===2?'end':'between'}else Q.i++; renderQuiz(); box.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'}); };
+  b.focus({preventScroll:true});
+}
+function answerPG(oi,btn){
+  const q=QPG[Q.i],ok=oi===q.a;
+  Q.pg.push({ok,tag:q.tag});
+  $$('.opt').forEach(b=>{b.disabled=true;if(+b.dataset.o===q.a)b.classList.add('right')});
+  if(!ok)btn.classList.add('wrong');
+  $('#fbBox').innerHTML=fbHTML(ok,q.e,ok?'':`<p>Jawaban yang benar: <b>${q.o[q.a]}</b></p>`);
+  showNext();
+}
+function checkIS(){
+  const raw=$('#ans').value; const v=norm(raw);
+  if(!v){$('#fbBox').innerHTML=`<div class="fb try"><div class="em">✏️</div><div><b>Tulis jawabanmu dulu ya 😊</b></div></div>`;return}
+  const q=QIS[Q.i];
+  const ok=(q.eq||[]).includes(v)||(q.sw||[]).some(p=>v.startsWith(p));
+  Q.is.push({ok,tag:q.tag});
+  $('#ans').disabled=true;$('#chk').style.display='none';
+  $('#fbBox').innerHTML=fbHTML(ok,q.e,ok?'':`<p>Jawaban yang benar: <b>${q.ans}</b></p>`);
+  showNext();
+}
+function checkUR(){
+  const t=$('#ans').value.trim();
+  if(t.length<8){$('#fbBox').innerHTML=`<div class="fb try"><div class="em">✏️</div><div><b>Tulis jawabanmu lebih lengkap dulu ya 😊</b></div></div>`;return}
+  const q=QUR[Q.i];
+  const tx=t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[’'`]/g,'');
+  const hit=q.pts.map(p=>p.re.test(tx)),m=hit.filter(Boolean).length;
+  const ok=m>=q.need, pts=Math.round(PTS.ur*Math.min(1,m/q.need));
+  Q.ur.push({ok,pts});
+  $('#ans').disabled=true;$('#chk').style.display='none';
+  const list=`<ul>${q.pts.map((p,i)=>`<li>${hit[i]?'✅':'⚪'} ${p.l}${hit[i]?'':' <i>(belum kamu sebut)</i>'}</li>`).join('')}</ul>`;
+  const extra=`<p>Kamu mendapat <b>${pts} dari ${PTS.ur} poin</b>. Poin penting dalam jawabanmu:</p>${list}<div class="key"><b>Contoh jawaban:</b> ${q.key}</div>`;
+  $('#fbBox').innerHTML=fbHTML(ok,ok?'Jawabanmu sudah memuat poin-poin penting. Tetap bandingkan dengan contoh jawaban ya!':'Bandingkan jawabanmu dengan contoh jawaban di bawah, lalu coba ceritakan dengan kata-katamu sendiri.',extra);
+  showNext();
+}
+function renderBetween(){
+  const P=PARTS[Q.part],arr=Q[P.id];
+  const sc=P.id==='ur'?arr.reduce((a,b)=>a+b.pts,0):arr.filter(x=>x.ok).length*PTS[P.id];
+  const mx=P.n*PTS[P.id], good=sc/mx>=.7;
+  const nxt=PARTS[Q.part+1];
+  box.innerHTML=`<div style="text-align:center"><div style="font-size:3.4rem">${good?'🏆':'🌱'}</div><h3>${P.name} selesai!</h3>
+  <p>Skor bagian ini: <b>${sc} dari ${mx}</b></p>
+  <div class="fb ${good?'good':'try'}" style="text-align:left"><div class="em">${good?'🌟':'💪'}</div><div><b>${good?pick(APPRE):pick(MOTI)}</b></div></div>
+  <div class="qfoot" style="justify-content:center"><button class="btn blue" id="goOn">Lanjut ke ${nxt.name} ➜</button></div></div>`;
+  if(good)burst(18);
+  $('#goOn').onclick=()=>{Q.part++;Q.i=0;Q.phase='q';renderQuiz();box.scrollIntoView({behavior:reduce?'auto':'smooth'})};
+}
+function renderEnd(){
+  box.innerHTML=`<div style="text-align:center"><div style="font-size:3.6rem">🎉</div><h2>Kuis selesai!</h2><p>Hebat${student?', '+student:''}! Kamu sudah mengerjakan semua soal. Yuk, lihat hasil dan umpan baliknya.</p>
+  <button class="btn blue" id="seeRes">Lihat Hasil & Refleksi 🌟</button></div>`;
+  burst(30);
+  $('#seeRes').onclick=()=>go(6);
+}
+$('#retryQuiz').onclick=()=>{Q=null;renderQuiz();go(5)};
+$('#backMateri').onclick=()=>go(3);
+renderQuiz();
+
+/* ====== hasil ====== */
+let lastSummary='';
+function calc(){
+  const pgOk=Q?Q.pg.filter(x=>x.ok).length:0, isOk=Q?Q.is.filter(x=>x.ok).length:0, urPts=Q?Q.ur.reduce((a,b)=>a+b.pts,0):0;
+  return {pgOk,isOk,urPts,score:pgOk*PTS.pg+isOk*PTS.is+urPts};
+}
+function renderResults(){
+  const el=$('#resBox');
+  if(!Q||overall()===0){
+    el.innerHTML=`<div style="text-align:center"><div style="font-size:3rem">📝</div><h3>Kamu belum mengerjakan kuis</h3><p>Kerjakan kuis dulu supaya kamu bisa melihat hasil belajarmu.</p><button class="btn blue" id="toQuiz">Ke Kuis ➜</button></div>`;
+    $('#toQuiz').onclick=()=>go(5); lastSummary=''; return;
+  }
+  const r=calc(), s=r.score;
+  const medal=s>=85?'🥇':s>=70?'🥈':s>=55?'🥉':'🌱';
+  const title=s>=85?'Luar biasa!':s>=70?'Bagus sekali!':s>=55?'Sudah baik!':'Ayo semangat!';
+  const fb=s>=85?'Masya Allah, hebat sekali! Kamu sudah sangat memahami Khulafaur Rasyidin. Barakallah, pertahankan semangat belajarmu dan bantu temanmu yang masih bingung ya! 🌟'
+    :s>=70?'Bagus sekali! Kamu sudah memahami sebagian besar materi. Barakallah! Sedikit lagi kamu bisa jadi juara. ✨'
+    :s>=55?'Kamu sudah berusaha dengan baik. Ayo baca lagi materi bagian yang masih kurang, lalu coba kuis sekali lagi. Kamu pasti bisa! 💪'
+    :'Tidak apa-apa, belajar itu butuh proses. Setiap kesalahan membuat kita makin pintar. Yuk, baca materi dan mainkan aktivitas sortir kartu lagi, lalu coba kuis ulang. Kamu pasti bisa! 🌈';
+  // penguasaan per khalifah
+  const tally={};KEYS.forEach(k=>tally[k]={ok:0,n:0});
+  [...Q.pg,...Q.is].forEach(x=>{if(tally[x.tag]){tally[x.tag].n++;if(x.ok)tally[x.tag].ok++}});
+  const weak=KEYS.filter(k=>tally[k].n>0&&tally[k].ok/tally[k].n<.6);
+  const row=(label,ic,val,max,txt)=>`<div class="barrow"><span>${ic}${label}</span><div class="prog"><i style="width:${val/max*100}%"></i></div><span>${txt}</span></div>`;
+  const done=overall()<35?`<p class="hint">⚠️ Kuis belum selesai (${overall()} dari 35 soal dikerjakan).</p>`:'';
+  el.innerHTML=`<div class="score"><div class="ring" style="--p:${s}%"><div><span>${s}<small>dari 100</small></span></div></div>
+    <div style="flex:1;min-width:220px"><h2 style="margin:0">${medal} ${title}${student?' '+student:''}</h2>${done}
+    <div class="fb ${s>=70?'good':'try'}" style="margin-top:8px"><div class="em">${s>=70?'🌟':'💪'}</div><div><b>${s>=70?'Apresiasi':'Semangat'}</b><p>${fb}</p></div></div></div></div>
+    <h3 style="margin-top:20px">📊 Rincian skor</h3>
+    <div class="bars">
+      ${row('Pilihan Ganda','🔤 ',r.pgOk,20,`${r.pgOk}/20`)}
+      ${row('Isian Singkat','✏️ ',r.isOk,10,`${r.isOk}/10`)}
+      ${row('Uraian','📜 ',r.urPts,30,`${r.urPts}/30`)}
+    </div>
+    <h3 style="margin-top:20px">🧭 Penguasaan tiap khalifah</h3>
+    <div class="bars">${KEYS.map(k=>row(K[k].short,ico(K[k].icon),tally[k].ok,Math.max(1,tally[k].n),tally[k].n?`${tally[k].ok}/${tally[k].n}`:'–')).join('')}</div>
+    <div class="tip" style="margin-top:16px">${weak.length?`📌 <b>Saran:</b> ulangi materi tentang <b>${weak.map(k=>K[k].short).join(', ')}</b>, lalu mainkan lagi aktivitas sortir kartu.`:'📌 <b>Hebat!</b> Semua khalifah sudah kamu kuasai dengan baik.'}</div>`;
+  lastSummary=`Rangkuman Belajar – Khulafaur Rasyidin (PAI Kelas VI)\nNama: ${student||'-'}\nNilai: ${s}/100 (PG ${r.pgOk}/20, Isian ${r.isOk}/10, Uraian ${r.urPts}/30)\n`+(weak.length?`Perlu diulang: ${weak.map(k=>K[k].short).join(', ')}\n`:'');
+  if(s>=70) burst(26);
+}
+
+/* ====== refleksi ====== */
+let mood='';
+$$('#mood button').forEach(b=>b.onclick=()=>{$$('#mood button').forEach(x=>x.classList.remove('on'));b.classList.add('on');mood=b.dataset.m});
+function refText(){
+  const checks=$$('.rc').map(c=>c.checked?'✔ '+c.parentElement.textContent.trim():'').filter(Boolean).join('\n');
+  return lastSummary+`Perasaan: ${mood||'-'}\nYang sudah bisa:\n${checks||'-'}\nSifat yang ingin ditiru: ${$('#r1').value.trim()||'-'}\nPertanyaan untuk guru: ${$('#r2').value.trim()||'-'}`;
+}
+function refMsg(t){const m=$('#refMsg');m.style.display='flex';m.className='msg good';m.textContent=t}
+$('#saveRef').onclick=()=>{
+  const n=$$('.rc').filter(c=>c.checked).length;
+  const bad=(mood==='Masih bingung');
+  refMsg(bad?`Terima kasih sudah jujur${student?', '+student:''}. Tidak apa-apa masih bingung, itu bagian dari belajar. Tanyakan ke gurumu dan baca lagi materinya ya. Kamu pasti bisa! 💪`
+    :`Barakallah${student?', '+student:''}! Refleksimu sudah tersimpan di halaman ini. ${n===3?'Semua tujuan sudah tercapai, hebat! 🎉':'Terus semangat belajar ya! 🌟'}`);
+  if(!bad&&n===3)burst(30);
+};
+$('#copyRef').onclick=async()=>{
+  try{await navigator.clipboard.writeText(refText());refMsg('Rangkuman sudah disalin. Tempel ke chat atau buku tugas untuk guru. 📋')}
+  catch(e){refMsg('Gagal menyalin otomatis. Kamu bisa memotret layar ini untuk ditunjukkan ke guru. 📸')}
+};
+
+go(1);
+</script>
+</body>
+</html>
